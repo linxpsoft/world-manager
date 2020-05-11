@@ -1,0 +1,6 @@
+{
+	"name": "metaverse",
+	"scripts": {
+		"format": "prettier --write --ignore-path .gitignore '**/*.{ts,html,scss,css,json}'"
+	}
+}

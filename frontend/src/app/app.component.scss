@@ -1,0 +1,46 @@
+.server-address {
+	margin-left: 16px;
+	opacity: 0.8;
+}
+
+.worlds {
+	width: 100%;
+	border-collapse: collapse;
+
+	tr {
+		th,
+		td {
+			padding: 16px 0;
+			text-align: center;
+		}
+
+		th {
+			font-weight: 500;
+		}
+
+		td {
+			border-top: solid 1px rgba(#000, 0.15);
+		}
+	}
+
+	.state {
+		color: #fff;
+		padding: 8px 16px;
+		border-radius: 999px;
+		font-weight: 500;
+		width: fit-content;
+
+		&.running {
+			background-color: #4caf50;
+		}
+
+		&.stopped {
+			background-color: #f44336;
+		}
+	}
+
+	.icon-button {
+		padding: 0;
+		min-width: 48px;
+	}
+}

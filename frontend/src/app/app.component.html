@@ -1,0 +1,80 @@
+<mat-toolbar color="primary">
+	<mat-toolbar-row>
+		<div class="container">
+			<span>Tivoli World Manager</span>
+			<span class="server-address">{{ serverAddress }}</span>
+		</div>
+	</mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container">
+	<h2 style="font-weight: 400;">
+		Latest version is
+		<a
+			href="https://git.tivolicloud.com/tivolicloud/interface/container_registry"
+			style="font-weight: 500;"
+		>
+			{{ latest ? latest.name : "..." }}
+		</a>
+		<br />
+		Hosting <b>1 server</b>
+	</h2>
+	<table class="worlds">
+		<tr>
+			<th></th>
+			<th>Name</th>
+			<th>Status</th>
+			<th>Version</th>
+			<th>Ports</th>
+			<th></th>
+		</tr>
+		<tr *ngFor="let world of worlds">
+			<td style="width: 1px; white-space: nowrap;">
+				<div *ngIf="world.state == 'running'" class="state running">
+					Running
+				</div>
+				<div *ngIf="world.state == 'exited'" class="state stopped">
+					Stopped
+				</div>
+			</td>
+			<td>{{ world.name }}</td>
+			<td>{{ world.status }}</td>
+			<td>{{ world.version }}</td>
+			<td>{{ world.startingPort }} - {{ world.startingPort + 20 }}</td>
+			<td style="width: 1px; white-space: nowrap;">
+				<button
+					class="icon-button"
+					mat-flat-button
+					[disabled]="world.state == 'running'"
+				>
+					<mat-icon>play_arrow</mat-icon>
+				</button>
+				<button
+					class="icon-button"
+					mat-flat-button
+					[disabled]="world.state == 'exited'"
+				>
+					<mat-icon>stop</mat-icon>
+				</button>
+				<button
+					class="icon-button"
+					mat-flat-button
+					[disabled]="world.state == 'exited'"
+				>
+					<mat-icon>loop</mat-icon>
+				</button>
+				<!-- <button mat-flat-button color="primary">
+					Admin
+				</button> -->
+				<button
+					color="warn"
+					mat-flat-button
+					[disabled]="latest ? latest.name == world.version : true"
+					(click)="onUpdate(world)"
+				>
+					<mat-icon>update</mat-icon> Update
+				</button>
+			</td>
+		</tr>
+	</table>
+</div>
